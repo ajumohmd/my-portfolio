@@ -180,7 +180,7 @@ const App = () => {
     }
   ];
 
-  const skills = ['React', 'Node.js', 'MongoDB', 'React Native', 'Firebase', 'TypeScript', 'D3.js', 'Python', 'Flask', 'Tailwind CSS'];
+  const skills = ['React', 'Node.js', 'React Native', 'Firebase', 'TypeScript', 'Python',  'Tailwind CSS'];
 
   const hobbies = [
     { name: 'Watching', img: '/images/football.png' },
