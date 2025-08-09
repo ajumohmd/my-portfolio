@@ -145,11 +145,11 @@ const App = () => {
             setBannerImageUrl(`data:image/png;base64,${base64Data}`);
         } else {
             console.error("Image generation failed. API response was missing expected data structure:", result);
-            setBannerImageUrl('/images/a.jpg');
+            setBannerImageUrl(process.env.PUBLIC_URL + '/images/a.jpg');
         }
     } catch (e) {
         console.error("Error generating banner image:", e);
-        setBannerImageUrl('/images/a.jpg');
+        setBannerImageUrl(process.env.PUBLIC_URL + '/images/a.jpg');
     } finally {
         setIsBannerLoading(false);
     }
@@ -180,15 +180,15 @@ const App = () => {
     }
   ];
 
-  const skills = ['React', 'Node.js', 'React Native', 'Firebase', 'TypeScript', 'Python',  'Tailwind CSS'];
+  const skills = ['React', 'Node.js', 'React Native', 'Firebase', 'TypeScript', 'Python', 'Tailwind CSS'];
 
   const hobbies = [
-    { name: 'Watching', img: '/images/football.png' },
-    { name: 'Hiking', img: '/images/hiking.png' },
-    { name: 'Playing', img: '/images/playing.png' },
-    { name: 'Bike Ride', img: '/images/riding.png' },
-    { name: 'Photography', img: '/images/wterfalls.png' },
-    { name: 'Reading', img: '/images/reading.png' },
+    { name: 'Watching', img: process.env.PUBLIC_URL +'/images/football.png' },
+    { name: 'Hiking', img: process.env.PUBLIC_URL +'/images/hiking.png' },
+    { name: 'Playing', img:process.env.PUBLIC_URL + '/images/playing.png' },
+    { name: 'Bike Ride', img: process.env.PUBLIC_URL +'/images/riding.png' },
+    { name: 'Photography', img:process.env.PUBLIC_URL + '/images/wterfalls.png' },
+    { name: 'Reading', img: process.env.PUBLIC_URL +'/images/reading.png' },
   ];
 
   // Reusable component for animating sections on scroll
@@ -270,7 +270,7 @@ const App = () => {
             </div>
             <div className="relative z-10 flex flex-col items-center">
              <img
-                src="/images/IMG_20250325_162438931_HDR.jpg"
+                src={process.env.PUBLIC_URL +"/images/IMG_20250325_162438931_HDR.jpg"}
                   alt="Profile"
                     className="w-48 h-52 rounded-full border-4 border-white shadow-xl mb-0 object-cover object-top"
                      />
@@ -372,10 +372,10 @@ const App = () => {
                 </div>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <img src="/images/teressa.png" alt="Image 1" className="rounded-lg w-full h-26  object-cover shadow-lg transform hover:scale-105 transition-transform duration-300"></img>
-                <img src="/images/gandhi.png" alt="Image 2" className="rounded-lg w-full h-26 object-cover shadow-lg transform hover:scale-105 transition-transform duration-300"></img>
-                <img src="/images/abraham.png" alt="Image 1" className="rounded-lg w-full h-26 object-cover shadow-lg transform hover:scale-105 transition-transform duration-300"></img>
-                <img src="/images/nelson.png" alt="Image 1" className="rounded-lg w-full h-26 object-cover shadow-lg transform hover:scale-105 transition-transform duration-300"></img>
+                <img src={process.env.PUBLIC_URL +"/images/teressa.png"} alt="Image 1" className="rounded-lg w-full h-26  object-cover shadow-lg transform hover:scale-105 transition-transform duration-300"></img>
+                <img src={process.env.PUBLIC_URL +"/images/gandhi.png" }alt="Image 2" className="rounded-lg w-full h-26 object-cover shadow-lg transform hover:scale-105 transition-transform duration-300"></img>
+                <img src={process.env.PUBLIC_URL +"/images/abraham.png" }alt="Image 1" className="rounded-lg w-full h-26 object-cover shadow-lg transform hover:scale-105 transition-transform duration-300"></img>
+                <img src={process.env.PUBLIC_URL +"/images/nelson.png" }alt="Image 1" className="rounded-lg w-full h-26 object-cover shadow-lg transform hover:scale-105 transition-transform duration-300"></img>
             </div>
           </div>
         </AnimatedSection>
