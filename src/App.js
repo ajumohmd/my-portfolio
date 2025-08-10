@@ -145,11 +145,11 @@ const App = () => {
             setBannerImageUrl(`data:image/png;base64,${base64Data}`);
         } else {
             console.error("Image generation failed. API response was missing expected data structure:", result);
-            setBannerImageUrl(process.env.PUBLIC_URL + '/images/a.jpg');
+            setBannerImageUrl(process.env.PUBLIC_URL + '/images/bann.png');
         }
     } catch (e) {
         console.error("Error generating banner image:", e);
-        setBannerImageUrl(process.env.PUBLIC_URL + '/images/a.jpg');
+        setBannerImageUrl(process.env.PUBLIC_URL + '/images/bann.png');
     } finally {
         setIsBannerLoading(false);
     }
