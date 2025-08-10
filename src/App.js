@@ -7,8 +7,21 @@ const App = () => {
   // State for mobile menu
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   // State for the dynamically generated banner image
-  const [bannerImageUrl, setBannerImageUrl] = useState('');
-  const [isBannerLoading, setIsBannerLoading] = useState(true);
+  const [bannerImageUrl, setBannerImageUrl] =  useState('/images/bann-small.webp');
+  const [isBannerLoading, setIsBannerLoading] = useState(false);
+  useEffect(() => {
+  if (typeof window === 'undefined') return;
+
+  const startGen = () => {
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(() => generateBannerImage(), { timeout: 2000 });
+    } else {
+      setTimeout(() => generateBannerImage(), 500);
+    }
+  };
+
+  startGen();
+}, []);
 
   // Helper component for navigation links with a consistent style and smooth scroll
   const NavLink = ({ to, children, onClick }) => {
