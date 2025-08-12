@@ -10,18 +10,6 @@ const App = () => {
   const [bannerImageUrl, setBannerImageUrl] = useState('');
   const [isBannerLoading, setIsBannerLoading] = useState(true);
 
-  // Animate the mobile menu using react-spring.
-  // We're using 'transform' to translate the menu's position, which is more
-  // performant than changing 'max-height' because it doesn't cause layout reflows.
-  const menuAnimation = useSpring({
-    transform: isMenuOpen ? 'translateY(0%)' : 'translateY(-100%)',
-    opacity: isMenuOpen ? 1 : 0,
-    config: {
-      tension: 250, // Higher tension makes the spring 'tighter' and faster
-      friction: 20, // Lower friction makes it more 'bouncy'
-    },
-  });
-
   // Helper component for navigation links with a consistent style and smooth scroll
   const NavLink = ({ to, children, onClick }) => {
     const handleScroll = (e) => {
@@ -157,11 +145,11 @@ const App = () => {
             setBannerImageUrl(`data:image/png;base64,${base64Data}`);
         } else {
             console.error("Image generation failed. API response was missing expected data structure:", result);
-            setBannerImageUrl(process.env.PUBLIC_URL + '/images/bann.png');
+            setBannerImageUrl(process.env.PUBLIC_URL + '/images/bann-min.png');
         }
     } catch (e) {
         console.error("Error generating banner image:", e);
-        setBannerImageUrl(process.env.PUBLIC_URL + '/images/bann.png');
+        setBannerImageUrl(process.env.PUBLIC_URL + '/images/bann-min.png');
     } finally {
         setIsBannerLoading(false);
     }
@@ -250,17 +238,15 @@ const App = () => {
           </div>
         </nav>
         {/* Mobile Navigation Dropdown */}
-        {/* Using react-spring for a smooth, performant animation.
-            The menu is now 'off-screen' and slides down into view. */}
-        <animated.div style={menuAnimation} className="md:hidden absolute top-full left-0 w-full bg-white shadow-lg z-40 p-4">
-            <div className="flex flex-col space-y-4 px-2 py-4">
-              <NavLink to="home" onClick={() => setIsMenuOpen(false)}>Home</NavLink>
-              <NavLink to="projects" onClick={() => setIsMenuOpen(false)}>Projects</NavLink>
-              <NavLink to="thoughts" onClick={() => setIsMenuOpen(false)}>Thoughts</NavLink>
-              <NavLink to="hobbies" onClick={() => setIsMenuOpen(false)}>Hobbies</NavLink>
-              <NavLink to="contact" onClick={() => setIsMenuOpen(false)}>Contact</NavLink>
-            </div>
-        </animated.div>
+        <div className={`md:hidden overflow-hidden transition-max-h duration-300 ease-in-out ${isMenuOpen ? 'max-h-96' : 'max-h-0'}`}>
+          <div className="flex flex-col space-y-4 px-6 py-4 bg-white shadow-inner">
+            <NavLink to="home" onClick={() => setIsMenuOpen(false)}>Home</NavLink>
+            <NavLink to="projects" onClick={() => setIsMenuOpen(false)}>Projects</NavLink>
+            <NavLink to="thoughts" onClick={() => setIsMenuOpen(false)}>Thoughts</NavLink>
+            <NavLink to="hobbies" onClick={() => setIsMenuOpen(false)}>Hobbies</NavLink>
+            <NavLink to="contact" onClick={() => setIsMenuOpen(false)}>Contact</NavLink>
+          </div>
+        </div>
       </header>
 
       <main className="min-h-screen">
@@ -284,7 +270,7 @@ const App = () => {
             </div>
             <div className="relative z-10 flex flex-col items-center">
              <img
-                 src={process.env.PUBLIC_URL +"/images/IMG_20250325_162438931_HDR.jpg"}
+                src={process.env.PUBLIC_URL +"/images/dp.jpg"}
                   alt="Profile"
                     className="w-48 h-52 rounded-full border-4 border-white shadow-xl mb-0 object-cover object-top"
                      />
@@ -386,7 +372,7 @@ const App = () => {
                 </div>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-               <img src={process.env.PUBLIC_URL +"/images/teressa.png"} alt="Image 1" className="rounded-lg w-full h-26  object-cover shadow-lg transform hover:scale-105 transition-transform duration-300"></img>
+                <img src={process.env.PUBLIC_URL +"/images/teressa.png"} alt="Image 1" className="rounded-lg w-full h-26  object-cover shadow-lg transform hover:scale-105 transition-transform duration-300"></img>
                 <img src={process.env.PUBLIC_URL +"/images/gandhi.png" }alt="Image 2" className="rounded-lg w-full h-26 object-cover shadow-lg transform hover:scale-105 transition-transform duration-300"></img>
                 <img src={process.env.PUBLIC_URL +"/images/abraham.png" }alt="Image 1" className="rounded-lg w-full h-26 object-cover shadow-lg transform hover:scale-105 transition-transform duration-300"></img>
                 <img src={process.env.PUBLIC_URL +"/images/nelson.png" }alt="Image 1" className="rounded-lg w-full h-26 object-cover shadow-lg transform hover:scale-105 transition-transform duration-300"></img>
@@ -414,8 +400,8 @@ const App = () => {
                     alt={hobby.name}
                     className="w-full h-48 object-cover opacity-90"
                   />
-                  <div className="absolute inset-x-0 bottom-0 flex items-center justify-center bg-gray-900 bg-opacity-70 group-hover:bg-opacity-50 transition-colors">
-                    <p className="text-white text-lg font-semibold">
+                  <div className="absolute inset-x-0 bottom-0 flex items-center justify-center  group-hover:bg-opacity-50 transition-colors">
+                    <p className="text-white text-lower font-semibold text-lg">
                       {hobby.name}
                     </p>
                   </div>
@@ -434,7 +420,7 @@ const App = () => {
                 I'm always open to new opportunities and collaborations. Feel free to reach out!
               </p>
               <div className="flex flex-wrap justify-center items-center space-x-6 space-y-4 sm:space-y-0">
-                <SocialContactLink href="mailto:your.ajumohmd@gmail.com" brand="mail">
+                <SocialContactLink href="mailto:ajumohmd@gmail.com" brand="mail">
                   <Mail />
                 </SocialContactLink>
                 <SocialContactLink href="https://wa.me/96893186068" brand="whatsapp">
