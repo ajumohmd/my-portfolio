@@ -3,6 +3,7 @@ import { useInView } from 'react-intersection-observer';
 import { Linkedin, Github, X, Mail, Phone, ExternalLink, Menu, Instagram, MessageCircle } from 'lucide-react';
 import { useSpring, animated } from '@react-spring/web';
 
+
 const App = () => {
   // State for mobile menu
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -158,19 +159,20 @@ const App = () => {
   useEffect(() => {
     generateBannerImage();
   }, []);
+  
 
   const projects = [
     {
-      title: 'Project Alpha',
-      description: 'A web application built to solve a common industry problem. It focuses on clean design and robust back-end logic.',
-      imageUrl: 'https://placehold.co/600x400/e0f2fe/0c4a6e?text=Project+Alpha',
-      link: '#'
+      title: 'My-Portfolio',
+      description: 'A personal web application built using React, Tailwind CSS, and JavaScript to showcase my skills and projects.It demonstrates responsive design, interactive UI, and clean, scalable code, highlighting my ability to create real-world web applications.',
+       imageUrl: process.env.PUBLIC_URL + '/images/flat-lay-workstation-with-copy-space-laptop.jpg',
+      link: 'https://github.com/ajumohmd/my-portfolio.git'
     },
     {
-      title: 'Project Beta',
-      description: 'A mobile-first app designed to connect people with local events in real-time. It features a sleek, user-friendly interface.',
-      imageUrl: 'https://placehold.co/600x400/e0f7fa/004d40?text=Project+Beta',
-      link: '#'
+      title: 'Alnasr Fuel',
+      description: 'This is a private Android app designed specifically for [Company Name] to automatically detect fuel levels from fuel meter images. The app eliminates manual entry by analyzing meter images and providing accurate fuel readings directly to authorized users.',
+      imageUrl: process.env.PUBLIC_URL + '/images/gastation.jpg',
+      link: 'https://github.com/ajumohmd/AlnasrFuel.git'
     },
     {
       title: 'Project Gamma',
@@ -178,9 +180,12 @@ const App = () => {
       imageUrl: 'https://placehold.co/600x400/fff3e0/ff6f00?text=Project+Gamma',
       link: '#'
     }
+    
   ];
 
-  const skills = ['React', 'Node.js', 'React Native', 'Firebase', 'TypeScript', 'Python', 'Tailwind CSS'];
+  const skills = ['React','React Native', 'JavaScript','Tailwind CSS','HTML','Bootstrap' ,
+    'Node.js',
+    'Android','Kotlin','Java','Firebase', 'Git','SQL'];
 
   const hobbies = [
     { name: 'Watching', img: process.env.PUBLIC_URL +'/images/football.png' },
@@ -278,7 +283,7 @@ const App = () => {
                 ajumohmd
               </h1>
               <p className="text-2xl md:text-3xl text-gray-30 font-bold mb-8 drop-shadow-md">
-                Front End Developer
+                Android Developer
               </p>
               <div className="flex justify-center space-x-6">
                 <SocialLink href="https://linkedin.com/in/ajmal-p-v-49a9371a0" brand="linkedin">
@@ -296,10 +301,9 @@ const App = () => {
             <h2 className="text-4xl font-bold mb-10 text-center text-gray-800">About Me</h2>
             <div className="text-lg text-gray-700 leading-relaxed text-center">
               <p>
-                I am a dedicated web developer based in Kerala, India, passionate about creating clean, efficient, and user-friendly web applications. 
-                Specializing in React, Node.js, and modern web technologies, I enjoy solving complex problems and building scalable solutions. 
-                Driven by curiosity and a commitment to continuous learning, I strive to deliver high-quality code with a focus on user experience. 
-                My mission is to contribute to projects that make a meaningful impact in the digital world.
+               I am a junior Android developer based in Kerala, India, passionate about building clean and user-friendly mobile applications.
+I am learning and working with Kotlin, Java, and modern Android tools, and enjoy solving problems while improving my skills.
+Driven to grow as a developer, I aim to contribute to meaningful projects and deliver quality apps with a great user experience.
               </p>
             </div>
           </div>
@@ -320,30 +324,35 @@ const App = () => {
               ))}
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {projects.map((project, index) => (
-                <div
-                  key={index}
-                  className="bg-white rounded-lg shadow-xl overflow-hidden transform hover:scale-105 hover:shadow-2xl transition-all duration-300"
-                >
-                  <img
-                    src={project.imageUrl}
-                    alt={`Placeholder for ${project.title}`}
-                    className="w-full h-40 object-cover"
-                  />
-                  <div className="p-4">
-                    <h4 className="text-lg font-bold mb-2 text-gray-900">{project.title}</h4>
-                    <p className="text-gray-600 text-sm mb-3">{project.description}</p>
-                    <a
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-2 inline-flex items-center text-base font-bold text-gray-900 hover:text-indigo-600 transition-colors"
-                    >
-                      View Project <ExternalLink size={18} className="ml-2" />
-                    </a>
-                  </div>
-                </div>
-              ))}
+             {projects.map((project, index) => (
+  <div
+    key={index}
+    className="bg-white rounded-lg shadow-xl overflow-hidden transform hover:scale-105 hover:shadow-2xl transition-all duration-300"
+  >
+
+
+    {project.imageUrl && (
+      <img
+        src={project.imageUrl}
+        alt={project.title}
+        className="w-full h-40 object-cover"
+      />
+    )}
+    <div className="p-4">
+      <h4 className="text-lg font-bold mb-2 text-gray-900">{project.title}</h4>
+      <p className="text-gray-600 text-sm mb-3">{project.description}</p>
+      <a
+        href={project.link}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="mt-2 inline-flex items-center text-base font-bold text-gray-900 hover:text-indigo-600 transition-colors"
+      >
+        View Project <ExternalLink size={18} className="ml-2" />
+      </a>
+    </div>
+  </div>
+))}
+
             </div>
           </div>
         </AnimatedSection>
@@ -423,10 +432,10 @@ const App = () => {
                 <SocialContactLink href="mailto:ajumohmd@gmail.com" brand="mail">
                   <Mail />
                 </SocialContactLink>
-                <SocialContactLink href="https://wa.me/96893186068" brand="whatsapp">
+                <SocialContactLink href="https://wa.me/919945021346" brand="whatsapp">
                   <MessageCircle />
                 </SocialContactLink>
-                <SocialContactLink href="tel:+968 93186068" brand="phone">
+                <SocialContactLink href="tel:+91 9945021346" brand="phone">
                   <Phone />
                 </SocialContactLink>
                 <SocialContactLink href="https://www.instagram.com/_aju0" brand="instagram">
