@@ -175,10 +175,10 @@ const App = () => {
       link: 'https://github.com/ajumohmd/AlnasrFuel.git'
     },
     {
-      title: 'Project Gamma',
-      description: 'A powerful data visualization tool that processes complex datasets into interactive and easy-to-understand charts.',
-      imageUrl: 'https://placehold.co/600x400/fff3e0/ff6f00?text=Project+Gamma',
-      link: '#'
+      title: 'Earthquake-Visualizer',
+      description: 'Earthquake Visualizer is a responsive React dashboard showing real-time USGS earthquake data. It features an interactive map with magnitude-based markers, a sidebar with key metrics and filters, charts for trends, and a mobile-friendly design—offering an intuitive way to explore global seismic activity.',
+      imageUrl: process.env.PUBLIC_URL + '/images/earthquake.jpg',
+      link: 'https://github.com/ajumohmd/earthquake-visualizer.git'
     }
     
   ];
